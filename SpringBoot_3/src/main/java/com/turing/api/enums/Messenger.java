@@ -1,6 +1,6 @@
 package com.turing.api.enums;
 
 public enum Messenger {
-    SUCCESS, EXIT, FAIL
+    SUCCESS, EXIT, FAIL, WRONG_PASSWORD
 
 }
