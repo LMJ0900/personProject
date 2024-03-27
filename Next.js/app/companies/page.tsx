@@ -2,14 +2,16 @@
 
 import { Main } from "next/document";
 
-interface Icompanies{
+interface ICompany{
+    id : number,
     company: string,
     contact: string,
     country: string
 }
-const Compani = (props: Icompanies) => {
+const Company = (props: ICompany) => {
     return(
-        <tr>
+        <tr key = {props.id} > 
+            <td>{props.id}</td>
             <td>{props.company}</td>
             <td>{props.contact}</td>
             <td>{props.country}</td>
@@ -21,17 +23,18 @@ const Compani = (props: Icompanies) => {
 
 
 export default function Companies(){
-   const names =[{Company : 'Alfreds Futterkiste', Contact : 'Maria Anders', Country : 'Germany'}
-   ,{Company : 'Centro comercial Moctezuma', Contact : 'Francisco Chang', Country : 'Mexico'}
-   ,{Company : 'Ernst Handel', Contact : 'Roland Mendel', Country : 'Austria'}
-   ,{Company : 'Island Trading', Contact : 'Helen Bennett', Country : 'UK'}
-   ,{Company : 'Laughing Bacchus Winecellars', Contact : 'Yoshi Tannamuri', Country : 'Canada'}
-   ,{Company : 'Magazzini Alimentari Riuniti', Contact : 'Giovanni Rovelli', Country : 'Italy'}
+   const names = [
+    {id :3, company : 'Alfreds Futterkiste', contact : 'Maria Anders', country : 'Germany'},
+   {id : 5,company : 'Centro comercial Moctezuma', contact : 'Francisco Chang', country : 'Mexico'},
+   {id : 6,company : 'Ernst Handel', contact : 'Roland Mendel', country : 'Austria'},
+   {id : 7,company : 'Island Trading', contact : 'Helen Bennett', country : 'UK'},
+   {id : 8,company : 'Laughing Bacchus Winecellars', contact : 'Yoshi Tannamuri', country : 'Canada'},
+   {id : 9,company : 'Magazzini Alimentari Riuniti', contact : 'Giovanni Rovelli', country : 'Italy'},
    ]
-   const nameList = names.map((v,i) => (<Compani key={i} {...v}/>))
    
-    return(
-    <>
+   const nameList = names.map((v) => (<Company  {...v} />))
+   
+    return(<>
     <h2>HTML Table</h2>
 
 <table>

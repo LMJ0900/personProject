@@ -37,7 +37,8 @@ export default function Join() {
     setWeight(e.target.value)
   }
   const router = useRouter();
-  const handleSubmit = () => {
+  const handleSubmit = (e : any) => {
+    e.preventDefault()
     const url = `${SERVER}/api/users`
     const data = { username, password,name,phone,addressId,job,height,weight}
     const config = {

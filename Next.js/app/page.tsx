@@ -3,7 +3,7 @@
 import { useState } from "react"
 import axios from 'axios';
 import Link from "next/link";
-
+import { Button } from "@mui/material";
 const SERVER = 'http://localhost:8080'
 
 export default function Home() {
@@ -30,12 +30,15 @@ export default function Home() {
       })
   }
 
-  return (<>
-    <h3>이름입력하세요</h3>
-    <input type="text" onChange={handleChange} /> <br />
-    <button onClick={handleClick}>완료</button><br /><br />
+  return (<div className='text-center'>
+     <div>welcom to react world !</div><br />
+    <h3 className='text-red-500'>이름을 입력하세요</h3>
+    <input className = 'board-black-500' type="text" onChange={handleChange} /> <br />
+    <Button onClick={handleClick}>완료</Button><br /><br />
     <Link href={"/login"} >로그인</Link> <br />
     <Link href={"/join"}>회원가입</Link> <br />
-    <Link href={"/articles/new-article"}> 게시판 </Link> <br /> </>
-  )
+    <Link href={"/mui-demo"}>MUI 데모</Link> <br />
+    <Link href={"/articles/new-article"}> 게시판 </Link> <br />
+  </div>)
+  
 }
