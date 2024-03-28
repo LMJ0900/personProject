@@ -1,13 +1,8 @@
 'use client'
 
+import CompanyRow from "@/app/organisms/rows/company-row";
 import { Main } from "next/document";
 
-interface ICompany{
-    id : number,
-    company: string,
-    contact: string,
-    country: string
-}
 const Company = (props: ICompany) => {
     return(
         <tr key = {props.id} > 

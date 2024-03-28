@@ -2,7 +2,8 @@
 import { useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-const SERVER = 'http://localhost:8080'
+import { API } from "@/app/atoms/enums/API"
+import AxiosConfig from "@/app/organisms/configs/axios-config"
 export default function Join() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -39,17 +40,9 @@ export default function Join() {
   const router = useRouter();
   const handleSubmit = (e : any) => {
     e.preventDefault()
-    const url = `${SERVER}/api/users`
     const data = { username, password,name,phone,addressId,job,height,weight}
-    const config = {
-        headers: {
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            Authorization: `Bearer blah ~`,
-            "Access-Control-Allow-Origin": "*",
-        }
-    }
-    axios.post(url, data, config)
+    
+    axios.post(`${API.SERVER}/api/users`, data, AxiosConfig())
         .then(res => { alert(JSON.stringify(res.data))
         router.push("/login")
         })

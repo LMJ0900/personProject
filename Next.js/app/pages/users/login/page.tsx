@@ -1,9 +1,10 @@
 'use client'
+import { API } from "@/app/atoms/enums/API"
+import AxiosConfig from "@/app/organisms/configs/axios-config"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { stringify } from "querystring"
 import { useState } from "react"
-const SERVER = 'http://localhost:8080'
 export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -15,17 +16,9 @@ export default function Login() {
     }
     const router = useRouter();
     const handleSubmit = () => {
-        const url = `${SERVER}/api/login`
         const data = { username, password }
-        const config = {
-            headers: {
-                "Cache-Control": "no-cache",
-                "Content-Type": "application/json",
-                Authorization: `Bearer blah ~`,
-                "Access-Control-Allow-Origin": "*",
-            }
-        }
-        axios.post(url, data, config)
+       
+        axios.post(`${API.SERVER}/api/login`, data, AxiosConfig())
             .then(res => {
                 const messege = res.data.로그인성공여부
                 alert(messege)

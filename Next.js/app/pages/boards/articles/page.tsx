@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { useRouter } from "next/navigation";
-const SERVER = 'http://localhost:8080'
+import {Box, Button, Input } from '@mui/material';
+import { API } from "@/app/atoms/enums/API";
+import AxiosConfig from "@/app/organisms/configs/axios-config";
 
 
 interface IArticle {
@@ -20,17 +22,10 @@ export default function Articles() {
     const [articles, setArticles] = useState([]);
     const router = useRouter();
 
-    const url = `${SERVER}/api/articles`
-    const config = {
-        headers: {
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            Authorization: `Bearer blah ~`,
-            "Access-Control-Allow-Origin": "*",
-        }
-    }
+    const url = `${API.SERVER}/articles`
+    
 useEffect(()=>{
-    axios.get(url,config)
+    axios.get(url,AxiosConfig())
     .then(res => {
         const message = res.data.message
         console.log(message)
@@ -54,21 +49,41 @@ useEffect(()=>{
 
 
 
-    return (<>
-        <h2>HTML Table</h2>
+    // return (<>
+    //     <h2>게시글 목록</h2>
 
+    //     <Box sx={{ height: 400, width: '100%' }}>
+    //   <DataGrid
+    //     rows={rows}
+    //     columns={columns}
+    //     initialState={{
+    //       pagination: {
+    //         paginationModel: {
+    //           pageSize: 5,
+    //         },
+    //       },
+    //     }}
+    //     pageSizeOptions={[5]}
+    //     checkboxSelection
+    //     disableRowSelectionOnClick
+    //   />
+    // </Box>
+    // </>
+    // )
+    return (<>
+        <h2>개인페이지 Article</h2>
         <table border={1}>
             <thead>
                 <tr>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th>등록일</th>
+                    <th>title</th>
+                    <th>content</th>
+                    <th>writer</th>
+                    <th>registerDate</th>
                 </tr>
             </thead>
             <tbody>
                 {articles.map((props: IArticle) => (
-                    <tr key={props.id} >
+                    <tr key={props.id}>
                         <td>{props.title}</td>
                         <td>{props.content}</td>
                         <td>{props.writer}</td>
@@ -77,6 +92,5 @@ useEffect(()=>{
                 ))}
             </tbody>
         </table>
-    </>
-    )
+    </>)
 }

@@ -1,6 +1,8 @@
 package com.turing.api.user;
 
 
+import com.turing.api.article.Article;
+import com.turing.api.board.Board;
 import com.turing.api.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,25 +27,28 @@ public class User {
     private String phoneNumber;
     private Long addressId;
     private String job;
-    private double height;
-    private double weight;
+/*    private double height;
+    private double weight;*/
 
     @Builder(builderMethodName = "builder")
     public User(long id, String username, String password,
-                String name, String phoneNumber, String job, double height,
-                double weight) {
+                String name, String phoneNumber, String job) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.job = job;
-        this.height = height;
-        this.weight = weight;
+       /* this.height = height;
+        this.weight = weight;*/
     }
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    @OneToMany(mappedBy = "writer")
+    private List<Article> articles;
+
 
     @Override
     public String toString() {
@@ -53,9 +58,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", address='" + addressId + '\'' +
-                ", job='" + job + '\'' +
+                ", job='" + job + '\'' +/*
                 ", height=" + height +
-                ", weight=" + weight +
+                ", weight=" + weight +*/
                 '}' + '\n';
     }
 

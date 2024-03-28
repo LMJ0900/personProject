@@ -43,8 +43,8 @@ public class UserController {
                 .name((String) paramap.get("name"))
                 .job((String) paramap.get("job"))
                 .phoneNumber((String) paramap.get("phoneNumber"))
-                .height(typeProxy.doubleOf.apply((String)paramap.get("height")))
-                .weight(typeProxy.doubleOf.apply((String)paramap.get("weight")))
+               /* .height(typeProxy.doubleOf.apply((String)paramap.get("height")))
+                .weight(typeProxy.doubleOf.apply((String)paramap.get("weight")))*/
                 .build());
 
         System.out.println("DB에 저장된 User 정보 : " + user);
