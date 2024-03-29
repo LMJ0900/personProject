@@ -1,11 +1,12 @@
 'use client'
-import { API } from "@/app/atoms/enums/API"
-import AxiosConfig from "@/app/organisms/configs/axios-config"
+import { API } from "@/redux/common/enums/API"
+import AxiosConfig from "@/redux/common/configs/axios-config"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { stringify } from "querystring"
 import { useState } from "react"
-export default function Login() {
+import { NextPage } from "next"
+const LoginPage: NextPage =  () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const handleUsername = (e: any) => {
@@ -39,3 +40,4 @@ export default function Login() {
         <button onClick={handleSubmit}>전송</button>
     </>)
 }
+export default LoginPage;

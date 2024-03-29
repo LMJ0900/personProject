@@ -27,20 +27,20 @@ public class User {
     private String phoneNumber;
     private Long addressId;
     private String job;
-/*    private double height;
-    private double weight;*/
+    private Double height;
+    private Double weight;
 
     @Builder(builderMethodName = "builder")
     public User(long id, String username, String password,
-                String name, String phoneNumber, String job) {
+                String name, String phoneNumber, String job,Double height, Double weight) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.job = job;
-       /* this.height = height;
-        this.weight = weight;*/
+        this.height = height;
+        this.weight = weight;
     }
 
     @OneToMany(mappedBy = "user")
@@ -58,9 +58,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", address='" + addressId + '\'' +
-                ", job='" + job + '\'' +/*
+                ", job='" + job + '\'' +
                 ", height=" + height +
-                ", weight=" + weight +*/
+                ", weight=" + weight +
                 '}' + '\n';
     }
 

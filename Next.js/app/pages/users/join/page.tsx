@@ -2,9 +2,10 @@
 import { useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { API } from "@/app/atoms/enums/API"
-import AxiosConfig from "@/app/organisms/configs/axios-config"
-export default function Join() {
+import { API } from "@/redux/common/enums/API"
+import AxiosConfig from "@/redux/common/configs/axios-config"
+import { NextPage } from "next"
+const JoinPage : NextPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -73,9 +74,10 @@ export default function Join() {
       </label><br />
       <p>By creating an account you agree to our <a href="#" style={{ color: 'dodgerblue' }}>Terms & Privacy</a>.</p>
       <div className="clearfix">
-        <button type="button" className="cancelbtn">Cancel</button>
+        <button type="button" className="cancelbtn">Cancel</button><br></br>
         <button type="submit" className="signupbtn" onClick={handleSubmit}>Sign Up</button>
       </div>
     </div>
   </>)
 }
+export default JoinPage;

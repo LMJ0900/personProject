@@ -1,6 +1,7 @@
 'use client'
 
-import CompanyRow from "@/app/organisms/rows/company-row";
+import CompanyRow from "@/app/components/rows/company-row";
+import { NextPage } from "next";
 import { Main } from "next/document";
 
 const Company = (props: ICompany) => {
@@ -17,7 +18,7 @@ const Company = (props: ICompany) => {
 
 
 
-export default function Companies(){
+const CompaniesPage : NextPage = () => {
    const names = [
     {id :3, company : 'Alfreds Futterkiste', contact : 'Maria Anders', country : 'Germany'},
    {id : 5,company : 'Centro comercial Moctezuma', contact : 'Francisco Chang', country : 'Mexico'},
@@ -47,3 +48,4 @@ export default function Companies(){
  </>
  )
 }
+export default CompaniesPage;

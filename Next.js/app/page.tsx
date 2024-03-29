@@ -4,12 +4,13 @@ import { useState } from "react"
 import axios from 'axios';
 import Link from "next/link";
 import { Button } from "@mui/material";
-import { PG } from "./atoms/enums/PG";
-import { API } from "./atoms/enums/API";
-import AxiosConfig from "./organisms/configs/axios-config";
+import { PG } from "../redux/common/enums/PG";
+import { API } from "../redux/common/enums/API";
+import AxiosConfig from "../redux/common/configs/axios-config";
+import { NextPage } from "next";
 
 
-export default function Home() {
+const HomePage : NextPage = () => {
   const [name, setName] = useState('')
   const handleChange = (e: any) => {
     setName(e.target.value)
@@ -32,8 +33,10 @@ export default function Home() {
     <Link href={`${PG.USER}/join`}>회원가입</Link> <br />
     <Link href={`${PG.DEMO}/mui-demo`}>MUI 데모</Link> <br />
     <Link href={`${PG.DEMO}/counter`}>카운터 데모</Link> <br />
-    <Link href={`${PG.DEMO}/counter/countainer`}>리덕스 데모</Link> <br />
+    <Link href={`${PG.DEMO}/redux-counter`}>리덕스 카운터 데모</Link> <br />
+    <Link href={`${PG.BOARD}/articles`}>전체게시판</Link> <br />
     <Link href={`${PG.BOARD}/articles`}> 게시판 </Link> <br />
   </div>)
   
 }
+export default HomePage;

@@ -15,20 +15,20 @@ import java.util.*;
 public class ArticleController {
     private final ArticleServiceImpl service;
 
-@GetMapping("/api/articles")
+@GetMapping("/api/all-articles")
     public Map<?, ?> findAll() throws SQLException {
         Map<String, Object> map = new HashMap<>();
         map.put("message", Messenger.SUCCESS);
         @SuppressWarnings("unchecked")
         List<Article> list = new ArrayList<>();
-      /*  list.add(Article.builder()
+       list.add(Article.builder()
                         .id(1L)
                         .title("제목")
                         .content("내용")
-                        .writer("작가")
+                       //.writer("글쓴이")
                         .registerDate("날짜")
-                .build());*/
-        list = service.findAll();
+                .build());
+       // list = service.findAll();
         map.put("result",list);
         return map;
     }

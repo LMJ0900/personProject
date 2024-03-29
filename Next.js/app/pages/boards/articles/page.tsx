@@ -4,8 +4,11 @@ import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { useRouter } from "next/navigation";
 import {Box, Button, Input } from '@mui/material';
-import { API } from "@/app/atoms/enums/API";
-import AxiosConfig from "@/app/organisms/configs/axios-config";
+import { API } from "@/redux/common/enums/API";
+import {useSelector,useDispatch} from 'react-redux'
+import AxiosConfig from "@/redux/common/configs/axios-config";
+import { NextPage } from "next";
+import {getAllArticles} from "@/redux/features/articles/article.service";
 
 
 interface IArticle {
@@ -18,33 +21,15 @@ interface IArticle {
 
 
 
-export default function Articles() {
+const ArticlesPage: NextPage =  () => {
+    const dispatch = useDispatch()
     const [articles, setArticles] = useState([]);
     const router = useRouter();
 
     const url = `${API.SERVER}/articles`
     
 useEffect(()=>{
-    axios.get(url,AxiosConfig())
-    .then(res => {
-        const message = res.data.message
-        console.log(message)
-        if(message === 'SUCCESS'){
-            console.log('게시글이 있습니다');
-            const arr = res.data.result
-
-            for (let i of arr) {
-                console.log(i)
-            }
-            setArticles(res.data.result)
-
-        }else if(message === 'FAIL'){
-            console.log("게시글이 없습니다");
-        }else {
-            console.log("지정되지 않은값");
-        }
-    })
-
+    dispatch(getAllArticles())
 },[])
 
 
@@ -94,3 +79,4 @@ useEffect(()=>{
         </table>
     </>)
 }
+export default ArticlesPage;
