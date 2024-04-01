@@ -36,6 +36,7 @@ const HomePage : NextPage = () => {
     <Link href={`${PG.DEMO}/redux-counter`}>리덕스 카운터 데모</Link> <br />
     <Link href={`${PG.BOARD}/articles`}>전체게시판</Link> <br />
     <Link href={`${PG.BOARD}/articles`}> 게시판 </Link> <br />
+    <Link href={`${PG.USER}/users`}> 유저목록 </Link>
   </div>)
   
 }

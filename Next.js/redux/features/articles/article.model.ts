@@ -3,4 +3,6 @@ export interface IArticle{
     title : string
     content : string
     registerDate : string
+    writer : string
+    array: []
 }

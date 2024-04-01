@@ -1,3 +1,3 @@
-export const initialState = {
+export const initialState:Icounter = {
     value: 0,
   };

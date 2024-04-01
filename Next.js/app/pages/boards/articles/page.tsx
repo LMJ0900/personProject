@@ -8,29 +8,34 @@ import { API } from "@/redux/common/enums/API";
 import {useSelector,useDispatch} from 'react-redux'
 import AxiosConfig from "@/redux/common/configs/axios-config";
 import { NextPage } from "next";
-import {getAllArticles} from "@/redux/features/articles/article.service";
-
-
-interface IArticle {
-    id: number,
-    title: string,
-    content: string,
-    writer: string
-    registerDate: string
-}
+import {fetchAllArticles} from "@/redux/features/articles/article.service";
+import { getAllArticles } from "@/redux/features/articles/article.slice";
+import { IArticle } from "@/redux/features/articles/article.model";
 
 
 
-const ArticlesPage: NextPage =  () => {
+
+const ArtilcesPage: NextPage = () => {
     const dispatch = useDispatch()
-    const [articles, setArticles] = useState([]);
-    const router = useRouter();
+    const [articles, setArticles] = useState([])
+   const allArticles: [] = useSelector(getAllArticles)
 
-    const url = `${API.SERVER}/articles`
+    if(allArticles !== undefined){
+        console.log('allArticles is not undefined')
+        
+        console.log('length is '+ allArticles.length)
+        for(let i=0; i< allArticles.length; i++){
+            console.log(JSON.stringify(allArticles[i]))
+        }
+    }else{
+        console.log('allArticles is undefined')
+    }
     
-useEffect(()=>{
-    dispatch(getAllArticles())
-},[])
+
+    useEffect(() => {
+        dispatch(fetchAllArticles(1))
+    }, [])
+    
 
 
 
@@ -79,4 +84,4 @@ useEffect(()=>{
         </table>
     </>)
 }
-export default ArticlesPage;
+export default ArtilcesPage;
