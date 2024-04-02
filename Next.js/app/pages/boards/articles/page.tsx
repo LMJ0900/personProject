@@ -11,11 +11,12 @@ import { NextPage } from "next";
 import {fetchAllArticles} from "@/redux/features/articles/article.service";
 import { getAllArticles } from "@/redux/features/articles/article.slice";
 import { IArticle } from "@/redux/features/articles/article.model";
+import Columns from "@/app/components/articles/colums";
 
 
 
 
-const ArtilcesPage: NextPage = () => {
+const ArtilcesPage: NextPage = ({data} : any) => {
     const dispatch = useDispatch()
     const [articles, setArticles] = useState([])
    const allArticles: [] = useSelector(getAllArticles)
@@ -62,26 +63,22 @@ const ArtilcesPage: NextPage = () => {
     // )
     return (<>
         <h2>개인페이지 Article</h2>
-        <table border={1}>
-            <thead>
-                <tr>
-                    <th>title</th>
-                    <th>content</th>
-                    <th>writer</th>
-                    <th>registerDate</th>
-                </tr>
-            </thead>
-            <tbody>
-                {articles.map((props: IArticle) => (
-                    <tr key={props.id}>
-                        <td>{props.title}</td>
-                        <td>{props.content}</td>
-                        <td>{props.writer}</td>
-                        <td>{props.registerDate}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={data}
+        columns={Columns()}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </Box>
     </>)
 }
 export default ArtilcesPage;

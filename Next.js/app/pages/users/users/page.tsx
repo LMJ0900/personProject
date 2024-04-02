@@ -1,5 +1,6 @@
 'use client'
 
+import { IUser } from "@/redux/features/users/user.model"
 import { fetchAllUsers } from "@/redux/features/users/user.service"
 import { getAllUsers } from "@/redux/features/users/users.slice"
 import { NextPage } from "next"
