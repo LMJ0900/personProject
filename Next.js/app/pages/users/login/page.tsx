@@ -19,7 +19,7 @@ const LoginPage: NextPage =  () => {
     const handleSubmit = () => {
         const data = { username, password }
        
-        axios.post(`${API.SERVER}/api/login`, data, AxiosConfig())
+        axios.post(`${API.SERVER}/login`, data, AxiosConfig())
             .then(res => {
                 const messege = res.data.로그인성공여부
                 alert(messege)

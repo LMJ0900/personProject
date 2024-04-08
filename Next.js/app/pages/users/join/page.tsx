@@ -41,11 +41,11 @@ const JoinPage : NextPage = () => {
   const router = useRouter();
   const handleSubmit = (e : any) => {
     e.preventDefault()
-    const data = { username, password,name,phone,addressId,job,height,weight}
+    const data = { username, password,name,phone,job}
     
-    axios.post(`${API.SERVER}/api/users`, data, AxiosConfig())
-        .then(res => { alert(JSON.stringify(res.data))
-        router.push("/login")
+    axios.post(`${API.SERVER}/users`, data, AxiosConfig())
+        .then(res => { alert(+JSON.stringify(res.data))
+        router.push("login")
         })
 }
   return (<>
@@ -60,15 +60,13 @@ const JoinPage : NextPage = () => {
       <label htmlFor="name"><b>Name</b></label><br />
       <input type="text" placeholder="Enter name" name="name" onChange={handleName} required /><br /><br />
       <label htmlFor="phone"><b>PhoneNumber</b></label><br />
-      <input type="text" placeholder="Enter phoneNumber" name="phone" onChange={handlePhone} required /><br /><br />
-      <label htmlFor="addressId"><b>Address</b></label><br />
-      <input type="text" placeholder="Enter address" name="addressId" onChange={handleAddressId} required /><br /><br />
+      <input type="text" placeholder="Enter phone" name="phone" onChange={handlePhone} required /><br /><br />
+     
+      
       <label htmlFor="job"><b>Job</b></label><br />
       <input type="text" placeholder="Enter job" name="job" onChange={handleJob} required /><br /><br />
-      <label htmlFor="height"><b>Height</b></label><br />
-      <input type="text" placeholder="Enter height" name="height" onChange={handleHeight} required /><br /><br />
-      <label htmlFor="weight"><b>Weight</b></label><br />
-      <input type="text" placeholder="Enter weight" name="weight" onChange={handleWeight} required /><br /><br />
+  
+     
       <label>
         <input type="checkbox" checked={true} name="remember" style={{ marginBottom: '15px' }} /> Remember me
       </label><br />

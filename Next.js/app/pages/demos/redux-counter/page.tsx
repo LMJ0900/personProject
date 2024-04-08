@@ -5,7 +5,7 @@ import { useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {useSelector,useDispatch} from 'react-redux'
-import{handlePlus, handleMinus, getCount} from '@/redux/features/counter/counter.slice'
+import{handlePlus, handleMinus, getCount} from '@/app/components/counter/service/counter.slice'
 import { NextPage } from "next";
 
 
