@@ -2,8 +2,8 @@
 
 import UserColumns from "@/app/components/users/columns"
 import { IUser } from "@/app/components/users/model/user.model"
-import { fetchAllUsers } from "@/app/components/users/service/user.service"
-import { getAllUsers } from "@/app/components/users/service/users.slice"
+import { findAllUsers } from "@/app/components/users/service/user.service"
+import { getAllUsers } from "@/app/components/users/service/user.slice"
 import { DataGrid } from "@mui/x-data-grid"
 import { NextPage } from "next"
 import { useEffect, useState } from "react"
@@ -29,31 +29,18 @@ const Userpage: NextPage =  () => {
     }
 
 useEffect(()=>{
-    dispatch(fetchAllUsers(1))
+    dispatch(findAllUsers(1))
 },[])
-
-  const rows = [ 
-    { id: 1, username: "Snow", name: "Jon", phoneNumber: 35 },
-    { id: 2, username: "Lannister", name: "Cersei", phoneNumber: 42 },
-    { id: 3, username: "Lannister", name: "Jaime", agphoneNumbere: 45 },
-    { id: 4, username: "Stark", name: "Arya", phoneNumber: 16 },
-    { id: 5, username: "Targaryen", name: "Daenerys", phoneNumber: null },
-    { id: 6, username: "Melisandre", name: null, phoneNumber: 150 },
-    { id: 7, username: "Clifford", name: "Ferrara", phoneNumber: 44 },
-    { id: 8, username: "Frances", name: "Rossini", phoneNumber: 36 },
-    { id: 9, username: "Roxie", name: "Harvey", phoneNumber: 65 },
-  ];
-
   
 return(<>
 <h2>유저 목록</h2>
-        <div style={{ height: 400, width: "100%" }}>
-      <DataGrid // 🔥 4
+        <div style={{ height: "100%", width: "100%" }}>
+  {allUsers && <DataGrid // 🔥 4
         rows={allUsers}
         columns={UserColumns()}
         pageSizeOptions={[5,10,20]} // 4-1
         checkboxSelection
-      />
+      />}
     </div>
 </>)
 }

@@ -5,9 +5,9 @@ export const initialState:IUser = {
     username: '',
     password: '',
     name: '',
-    phoneNumber: '',
+    phone: '',
+    regDate : '',
+    modDate : '',
     job: '',
-    height: 0,
-    weight: 0,
     array: []
 }

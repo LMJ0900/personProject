@@ -2,6 +2,8 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import countReducer from "@/app/components/counter/service/counter.slice";
 import articleReducer from "@/app/components/articles/service/article.slice";
+import boardReducer from "@/app/components/boards/service/board.slice";
+import userReducer from "@/app/components/users/service/user.slice";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 const createNoopStorage = () => {
@@ -38,13 +40,19 @@ const userPersistConfig = {
     storage,
     whitelist: ["userState"],
   };
-
+  const boardPersistConfig = {
+    key: "board",
+    storage,
+    whitelist: ["boardState"],
+  };
 
 const persistedCountReducer = persistReducer(countPersistConfig, countReducer);
 const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
-const persistedUserReducer = persistReducer(userPersistConfig, articleReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
+const persistedBoardReducer = persistReducer(boardPersistConfig, boardReducer);
 export const rootReducer = combineReducers({
   count: persistedCountReducer,
   article: persistedArticleReducer,
-  user: persistedUserReducer
+  user: persistedUserReducer,
+  board: persistedBoardReducer
 });

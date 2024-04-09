@@ -3,9 +3,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice } from "@reduxjs/toolkit";
 import { IArticle } from '../../articles/model/article';
 import { initialState } from './company-init';
-import { fetchAllArticles } from './company-service';
+import { findAllArticles } from '../../articles/service/article.service';
 
-const articleThunks = [fetchAllArticles]
+
+const articleThunks = [findAllArticles]
 
 const status = {
     pending: 'pending',
@@ -35,7 +36,7 @@ export const articleSlice = createSlice({
         const {pending, rejected} = status;
 
         builder
-        .addCase(fetchAllArticles.fulfilled, handleFulfilled)
+        .addCase(findAllArticles.fulfilled, handleFulfilled)
   
     }
 })

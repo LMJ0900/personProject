@@ -1,6 +1,6 @@
 'use client'
 
-import CompanyRow from "@/app/components/rows/company-row";
+
 import { NextPage } from "next";
 import { Main } from "next/document";
 

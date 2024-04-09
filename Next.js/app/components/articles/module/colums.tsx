@@ -1,8 +1,12 @@
 import { GridColDef } from "@mui/x-data-grid"
+import { ArticleColums } from "../model/article-colums"
+import { Typography } from "@mui/material"
 
+interface CellType{
+    row: ArticleColums
+}
 
-
-export default function Columns() : GridColDef[]{
+export default function ArticleColumns() : GridColDef[]{
 
     return [
         {
@@ -11,39 +15,47 @@ export default function Columns() : GridColDef[]{
             sortable: false,
             field: 'id',
             headerName: 'ID',
-            renderCell(){
-                return <></>
-            }
-        },
+            renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.id}</Typography>
+            },
             {
                 flex: 0.04,
                 minWidth: 30,
                 sortable: false,
-                field: 'id',
+                field: 'title',
                 headerName: '제목',
-                renderCell(){
-                    return <></>
-                }
+                renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.title}</Typography>
             },
                 {
                     flex: 0.04,
                     minWidth: 30,
                     sortable: false,
-                    field: 'id',
+                    field: 'content',
                     headerName: '내용',
-                    renderCell(){
-                        return <></>
-                    }
+                    renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.content}</Typography>
                 },
                     {
                         flex: 0.04,
                         minWidth: 30,
                         sortable: false,
-                        field: 'id',
+                        field: 'regDate',
                         headerName: '등록일',
-                        renderCell(){
-                            return <></>
-                        }
+                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.regDate}</Typography>
+                    },
+                    {
+                        flex: 0.04,
+                        minWidth: 30,
+                        sortable: false,
+                        field: 'modDate',
+                        headerName: '수정일',
+                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.modDate}</Typography>
+                    },
+                    {
+                        flex: 0.04,
+                        minWidth: 30,
+                        sortable: false,
+                        field: 'writer',
+                        headerName: '작가',
+                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.writer}</Typography>
                     }
     ]
 }

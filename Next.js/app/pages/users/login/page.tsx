@@ -1,11 +1,12 @@
 'use client'
-import { API } from "@/redux/common/enums/API"
-import AxiosConfig from "@/redux/common/configs/axios-config"
+
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { stringify } from "querystring"
 import { useState } from "react"
 import { NextPage } from "next"
+import AxiosConfig from "@/app/components/common/configs/axios-config"
+import { API } from "@/app/components/common/enums/API"
 const LoginPage: NextPage =  () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

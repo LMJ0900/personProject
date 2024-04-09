@@ -1,10 +1,11 @@
-import { instance } from "@/redux/common/configs/axios-config"
+import { instance } from "../../common/configs/axios-config"
 
 
-export const fetchAllUsersAPI = async (page : number) => {
+
+export const findAllUsersAPI = async (page : number) => {
     console.log()
     try{
-        const response = await instance.get('/all-users',{
+        const response = await instance.get('/users/list',{
             params: {page, limit: 10}
         })
         return response.data

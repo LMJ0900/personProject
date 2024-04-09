@@ -2,9 +2,9 @@
 import { useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { API } from "@/redux/common/enums/API"
-import AxiosConfig from "@/redux/common/configs/axios-config"
 import { NextPage } from "next"
+import AxiosConfig from "@/app/components/common/configs/axios-config"
+import { API } from "@/app/components/common/enums/API"
 const JoinPage : NextPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

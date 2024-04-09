@@ -50,7 +50,7 @@ export default function UserColumns() : GridColDef[]{
                         sortable: false,
                         field: 'phoneNumber',
                         headerName: '전화번호',
-                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.phoneNumber}</Typography>
+                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.phone}</Typography>
                     },
                     {
                         flex: 0.04,
@@ -60,22 +60,7 @@ export default function UserColumns() : GridColDef[]{
                         headerName: '직업',
                         renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.job}</Typography>
                     },
-                    {
-                        flex: 0.04,
-                        minWidth: 30,
-                        sortable: false,
-                        field: 'height',
-                        headerName: '키',
-                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.height}</Typography>
-                    },
-                    {
-                        flex: 0.04,
-                        minWidth: 30,
-                        sortable: false,
-                        field: 'weight',
-                        headerName: '몸무게',
-                        renderCell: ({row} : CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.weight}</Typography>
-                    }
+                    
                     
     ]
 }

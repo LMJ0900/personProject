@@ -1,59 +1,47 @@
 'use client'
 
-import { useRouter } from "next/navigation"
-import { DataGrid } from '@mui/x-data-grid';
-import { useState, useEffect } from "react"
-import {Box, Button, Input} from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux'
-import { NextPage } from "next";
-import { fetchAllArticles } from "@/app/components/articles/service/article.service";
-import Columns from "@/app/components/articles/module/colums";
-import { getAllArticles } from "@/app/components/articles/service/article.slice";
-// import React from "react";
+
+import { BoardColums } from "@/app/components/boards/model/board-colums"
+import BoardColumns from "@/app/components/boards/module/colums"
+import { findAllBoards } from "@/app/components/boards/service/board.service"
+import { getAllBoards } from "@/app/components/boards/service/board.slice"
+import { DataGrid } from "@mui/x-data-grid"
+import { NextPage } from "next"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
-
-const BoardListPage: NextPage = ({data}:any) => {
+const Boardpage: NextPage =  () => {
     const dispatch = useDispatch()
- 
-   const allArticles: [] = useSelector(getAllArticles)
+    const allBoards: [] = useSelector(getAllBoards)
 
-    if(allArticles !== undefined){
-        console.log('allArticles is not undefined')
+    if(allBoards !== undefined){
+        console.log('allBoards is not undefined')
         
-        console.log('length is '+ allArticles.length)
-        for(let i=0; i< allArticles.length; i++){
-            console.log(JSON.stringify(allArticles[i]))
+        console.log('length is '+ allBoards.length)
+        for(let i=0; i< allBoards.length; i++){
+            console.log(JSON.stringify(allBoards[i]))
         }
     }else{
-        console.log('allArticles is undefined')
+        console.log('allBoards is undefined')
     }
-    
 
-    useEffect(() => {
-        dispatch(fetchAllArticles(1))
-    }, [])
-    
-    return (<>
-        <h2>게시판 목록</h2>
-        <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={data}
-        columns={Columns()}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
+useEffect(()=>{
+    dispatch(findAllBoards(1))
+},[])
+  
+return(<>
+<h2>게시판 목록</h2>
+        <div style={{ height: "100%", width: "100%" }}>
+  {allBoards && <DataGrid // 🔥 4
+        rows={allBoards}
+        columns={BoardColumns()}
+        pageSizeOptions={[5,10,20]} // 4-1
         checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
-    </>)
+      />}
+    </div>
+</>)
 }
+export default Boardpage;
 
-export default BoardListPage

@@ -1,8 +1,8 @@
 'use client'
 
 import { IUser } from "@/app/components/users/model/user.model"
-import { fetchAllUsers } from "@/app/components/users/service/user.service"
-import { getAllUsers } from "@/app/components/users/service/users.slice"
+import { findAllUsers } from "@/app/components/users/service/user.service"
+import { getAllUsers } from "@/app/components/users/service/user.slice"
 import { NextPage } from "next"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -25,7 +25,7 @@ const Userpage: NextPage =  () => {
     }
 
 useEffect(()=>{
-    dispatch(fetchAllUsers(1))
+    dispatch(findAllUsers(1))
 },[])
 return(<>
 <h2>유저 목록</h2>
@@ -48,8 +48,6 @@ return(<>
                         <td>{props.password}</td>
                         <td>{props.name}</td>
                         <td>{props.job}</td>
-                        <td>{props.height}</td>
-                        <td>{props.weight}</td>
                     </tr>
                 ))}
 
