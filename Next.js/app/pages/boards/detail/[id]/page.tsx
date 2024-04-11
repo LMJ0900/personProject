@@ -1,34 +1,36 @@
 'use client'
 
-import { useRouter } from "next/navigation"
-import { DataGrid } from '@mui/x-data-grid';
-import { useState, useEffect } from "react"
-import {Box, Button, Input, Typography} from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux'
-import { NextPage } from "next";
-import Columns from "@/app/components/articles/module/colums";
-import { getAllArticles } from "@/app/components/articles/service/article.slice";
-import { findAllArticles } from "@/app/components/articles/service/article.service";
-import { Rowdies } from "next/font/google";
-// import React from "react";
+
+import { IBoard } from "@/app/components/boards/model/board"
+import { BoardColums } from "@/app/components/boards/model/board-colums"
+import BoardColumns from "@/app/components/boards/module/colums"
+import { findAllBoards, findBoardById } from "@/app/components/boards/service/board.service"
+import { getAllBoards, getBoardById } from "@/app/components/boards/service/board.slice"
+import { MyTypography } from "@/app/components/common/style/cell"
+import { Typography } from "@mui/material"
+import { DataGrid } from "@mui/x-data-grid"
+import { NextPage } from "next"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
 
-// export default function BoardDetailPage(props:any) {
+export default function BoardDetailPage({params}:any) {
+    const dispatch = useDispatch()
+    const board:IBoard = useSelector(getBoardById)
+
     
+useEffect(()=>{
+    dispatch(findBoardById(params.id))
+},[])
 
-    
-// useEffect(()=>{
-//     dispatch(findBoardById(props.params.id))
-// },[])
+    return (<>
+    게시판 상세
+    <span> {MyTypography('ID :'+params.id,"1.5rem")}</span>
+    <span> {MyTypography('게시판 이름 :'+board.boardName,"1.5rem")}</span>
+    <span> {MyTypography('게시판 종류 :'+board.boardType,"1.5rem")}</span>
+    </>
+)
 
-//     return (<>
-//     게시판 상세
-//         <span>ID</span> <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {props.prams.id}</Typography>
-//         <span>게시판이름</span><Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {props.prams.boardName}</Typography>
-//         <span>게시판타입</span><Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {props.prams.boardType}</Typography>
-//     </>
-// )
-
-// }
+}

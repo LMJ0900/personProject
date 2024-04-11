@@ -1,6 +1,6 @@
 'use client'
 
-import UserColumns from "@/app/components/users/columns"
+import UserColumns from "@/app/components/users/module/columns"
 import { IUser } from "@/app/components/users/model/user.model"
 import { findAllUsers } from "@/app/components/users/service/user.service"
 import { getAllUsers } from "@/app/components/users/service/user.slice"
