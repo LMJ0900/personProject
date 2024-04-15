@@ -1,4 +1,5 @@
 import { instance } from "../../common/configs/axios-config"
+import { IUser } from "../model/user.model"
 
 
 
@@ -20,6 +21,16 @@ export const findUserByIdAPI = async (id : number) => {
             params: {id}
         })
         return response.data
+    }catch(error){
+        console.log(error)
+        return error
+    }
+}
+export const loginAPI= async (user : IUser) => {
+    try{
+        const response = await instance.post('/users/login',user)
+        // java에서 Messenger.message 에 값을 담음
+        return response.data.message
     }catch(error){
         console.log(error)
         return error

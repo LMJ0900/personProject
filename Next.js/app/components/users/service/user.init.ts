@@ -10,5 +10,6 @@ export const initialState:IUser = {
     modDate : '',
     job: '',
     array: [],
-    json : {}
+    json : {},
+    message : '',
 }

@@ -1,20 +1,29 @@
 'use client'
 
+import { useRouter } from "next/navigation"
+import { DataGrid } from '@mui/x-data-grid';
+import { useState, useEffect } from "react"
+import {Box, Button, Input, Link, styled} from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux'
+import { NextPage } from "next";
+import { findAllBoards } from "@/app/components/boards/service/board.service";
+import { getAllBoards } from "@/app/components/boards/service/board.slice";
+import BoardColumns from "@/app/components/boards/module/colums";
+// import React from "react";
+const cards = [
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/mountain-nightview.jpg",
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/autumn.jpg",
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/babypinetree.jpg",
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/beach.jpg",
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/purpleflowers.jpg",
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/starrysky.jpg",
+  "https://www.tailwindtap.com/assets/components/horizontal-carousel/lake.jpg",
+];
 
-import { BoardColums } from "@/app/components/boards/model/board-colums"
-import BoardColumns from "@/app/components/boards/module/colums"
-import { findAllBoards } from "@/app/components/boards/service/board.service"
-import { getAllBoards } from "@/app/components/boards/service/board.slice"
-import { DataGrid } from "@mui/x-data-grid"
-import { NextPage } from "next"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-
-
-
-const Boardpage: NextPage =  () => {
+export default function BoardListPage({data}:any) {
     const dispatch = useDispatch()
-    const allBoards: [] = useSelector(getAllBoards)
+ 
+   const allBoards: [] = useSelector(getAllBoards)
 
     if(allBoards !== undefined){
         console.log('allBoards is not undefined')
@@ -26,22 +35,67 @@ const Boardpage: NextPage =  () => {
     }else{
         console.log('allBoards is undefined')
     }
+    
 
-useEffect(()=>{
-    dispatch(findAllBoards(1))
-},[])
-  
-return(<>
-<h2>게시판 목록</h2>
-        <div style={{ height: "100%", width: "100%" }}>
-  {allBoards && <DataGrid // 🔥 4
+    useEffect(() => {
+        dispatch(findAllBoards(1))
+    }, [])
+    
+    return (<>
+         <table  className="table-auto w-4/5 border-x-black" style={{margin: '50px auto'}}>
+        <thead>
+          <tr>
+            <td>
+            <div className="flex flex-col items-center justify-center w-full bg-white-300">
+      <div className="flex overflow-x-scroll snap-x snap-mandatory max-w-6xl no-scrollbar">
+        {cards.map((data, index) => {
+          return (
+            <section
+              className="flex-shrink-0 w-full snap-center justify-center items-center"
+              key={index}
+            >
+              <img
+                src={data}
+                alt="Images to scroll horizontal"
+                className="w-full h-[500px]"
+              />
+            </section>
+          );
+        })}
+      </div>
+    </div>
+
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td 
+        align="center" className="w-full  bg-gray-400 border-black border-4 p-8 h-20 text-[20px]" 
+        >
+       <Link href=''>게시판 글쓰기</Link>
+        </td>
+    </tr>
+    <tr>
+        <td align="center"  className="h-300">
+     {allBoards && <DataGrid
         rows={allBoards}
         columns={BoardColumns()}
-        pageSizeOptions={[5,10,20]} // 4-1
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
         checkboxSelection
+        disableRowSelectionOnClick
       />}
-    </div>
-</>)
+     </td>
+    </tr>
+       
+        </tbody>
+      </table>
+    </>)
 }
-export default Boardpage;
-

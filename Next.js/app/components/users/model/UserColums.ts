@@ -8,6 +8,6 @@ export interface UserColumn{
     job? : string
     regDate? : string
     modDate? : string
-
+    message? : string
     
 }
